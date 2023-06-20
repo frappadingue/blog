@@ -21,7 +21,7 @@ jobs:
       - name: Copy files to frappadingue.github.io
         run: |
           mkdir frappadingue.github.io
-          cp -R ./* frappadingue.github.io/
+          rsync -av --exclude=".git" . frappadingue.github.io/
       
       - name: Move to frappadingue.github.io directory
         run: cd frappadingue.github.io/
@@ -31,4 +31,3 @@ jobs:
           git add -A
           git commit -m "Update blog"
           git push https://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@github.com/frappadingue/frappadingue.github.io.git HEAD:main
-
