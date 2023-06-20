@@ -3,7 +3,7 @@ name: Deploy to frappadingue.github.io
 on:
   push:
     branches:
-      - main  # Ganti dengan nama branch utama pada repositori blog
+      - main
 
 jobs:
   deploy:
@@ -13,13 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build
-        # Ganti dengan perintah build Anda, jika diperlukan
-        run: npm run build
+      - name: Copy files to frappadingue.github.io
+        run: |
+          # Ganti dengan direktori tempat file "frappadingue.github.io" diletakkan
+          cd Documents/frappadingue.github.io
 
-      - name: Deploy to frappadingue.github.io
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Ganti dengan direktori build Anda, jika diperlukan
-          publish_branch: main  # Ganti dengan nama branch utama pada repositori "frappadingue.github.io"
+          # Hapus konten yang ada di dalam repositori "frappadingue.github.io" kecuali direktori .git
+          find . -not -name '.git' -delete
+
+          # Ganti dengan direktori tempat file "blog" diletakkan
+          cd Documents/blog
+
+          # Salin file ke direktori repositori "frappadingue.github.io"
+          cp -r * ../frappadingue.github.io/
+
+      - name: Commit and push changes
+        run: |
+          cd path/to/frappadingue.github.io
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "Update from blog repository"
+          git push
