@@ -30,4 +30,4 @@ jobs:
         run: |
           git add -A
           git commit -m "Update blog"
-          git push https://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@github.com/frappadingue/frappadingue.github.io.git HEAD:main
+          git push https://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@github.com/frappadingue/frappadingue.github.io.git HEAD:main
