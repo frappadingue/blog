@@ -1,0 +1,52 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Iamfrappadingue'
+theme = "PaperMod"
+
+[[menu.main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+identifier = "docs"
+name = "Docs"
+url = "/docs"
+weight = 3
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about"
+weight = 4
+
+[params.profileMode]
+enabled = true
+title = "Iamfrappadingue" # optional, default will be site title
+subtitle = ""
+
+
+[[params.profileMode.buttons]]
+name = "Posts"
+url = "/posts"
+
+[[params.profileMode.buttons]]
+name = "Github"
+url = "https://github.com/"
+
+[[params.socialIcons]]
+name = "<platform>"
+url = "<link>"
+
+[[params.socialIcons]]
+name = "<platform 2>"
+url = "<link2>"
+
+
