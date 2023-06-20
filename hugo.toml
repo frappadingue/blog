@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'http://frappadingue.github.io/blog/'
 languageCode = 'en-us'
 title = 'Iamfrappadingue'
 theme = "PaperMod"
