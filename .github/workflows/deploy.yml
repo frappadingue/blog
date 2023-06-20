@@ -3,31 +3,23 @@ name: Deploy to frappadingue.github.io
 on:
   push:
     branches:
-      - main  # Ganti dengan branch yang sesuai di repository "blog"
+      - main  # Ganti dengan nama branch utama pada repositori blog
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Set up Git
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "iamfrappadingue@gmail.com"
-      
-      - name: Copy files to frappadingue.github.io
-        run: |
-          mkdir frappadingue.github.io
-          rsync -av --exclude=".git" . frappadingue.github.io/
-      
-      - name: Move to frappadingue.github.io directory
-        run: cd frappadingue.github.io/
-      
-      - name: Commit and push changes
-        run: |
-          git add -A
-          git commit -m "Update blog"
-          git push -u https://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@github.com/frappadingue/frappadingue.github.io.git HEAD:main
+
+      - name: Build
+        # Ganti dengan perintah build Anda, jika diperlukan
+        run: npm run build
+
+      - name: Deploy to frappadingue.github.io
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # Ganti dengan direktori build Anda, jika diperlukan
+          publish_branch: main  # Ganti dengan nama branch utama pada repositori "frappadingue.github.io"
