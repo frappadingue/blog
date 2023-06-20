@@ -13,25 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Copy files to frappadingue.github.io
+      - name: Set up Git
+        run: |
+          git config --global user.name "frappadingue"
+          git config --global user.email "iamfrappadingue@gmail.com"
+
+      - name: Copy 'public' folder to frappadingue.github.io
         run: |
           # Ganti dengan direktori tempat file "frappadingue.github.io" diletakkan
-          cd Documents/frappadingue.github.io
+          cd home/Documents/frappadingue.github.io
 
           # Hapus konten yang ada di dalam repositori "frappadingue.github.io" kecuali direktori .git
           find . -not -name '.git' -delete
 
-          # Ganti dengan direktori tempat file "blog" diletakkan
-          cd Documents/blog
+          # Ganti dengan direktori tempat folder 'public' di repositori "blog" diletakkan
+          cd home/Documents/blog
 
-          # Salin file ke direktori repositori "frappadingue.github.io"
-          cp -r * ../frappadingue.github.io/
+          # Salin folder 'public' ke direktori repositori "frappadingue.github.io"
+          cp -r public/* ../frappadingue.github.io/
 
       - name: Commit and push changes
         run: |
           cd path/to/frappadingue.github.io
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
           git add .
-          git commit -m "Update from blog repository"
+          git commit -m "Update 'public' folder from blog repository"
           git push
